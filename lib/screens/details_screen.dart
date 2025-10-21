@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/book.dart';
 
+int quantity = 10; // variable globale de la quantité dispponible
+
 class DetailsScreen extends StatefulWidget {
   final Book book;
 
@@ -21,6 +23,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          Text(
+            "Quantité restante : $quantity",
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
           // 1️⃣ Image
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
@@ -67,7 +73,15 @@ class _DetailsScreenState extends State<DetailsScreen> {
           Center(
             child: ElevatedButton.icon(
               onPressed: () {
-                // Action à définir
+                if (quantity > 0) {
+                  setState(() {
+                    quantity--;
+                  });
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Stock épuisé !")),
+                  );
+                }
               },
               icon: const Icon(Icons.shopping_bag),
               label: const Text(
