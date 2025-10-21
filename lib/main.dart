@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './screens/home_srcreen.dart';
+import './screens/library_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const HomeScreen(),
+      home: LibraryScreen(),
     );
   }
 }
