@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Store INSAT',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true,
       ),
       home: LibraryScreen(),
     );

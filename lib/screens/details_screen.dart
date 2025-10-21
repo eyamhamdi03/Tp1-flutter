@@ -4,6 +4,8 @@ import '../models/book.dart';
 int quantity = 10; // variable globale de la quantité dispponible
 
 class DetailsScreen extends StatefulWidget {
+  // on doit la changer à statefull pour tenir compte du state et par suite avoir acces a la variable quantity pour la changer et decrementer
+
   final Book book;
 
   const DetailsScreen({super.key, required this.book});
