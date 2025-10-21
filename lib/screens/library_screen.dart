@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tp1/screens/details_screen.dart';
 import '../models/book.dart';
 import '../widgets/library_cell.dart';
 
@@ -25,20 +26,28 @@ class LibraryScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Expanded(
-        child: GridView.builder(
-          padding: const EdgeInsets.all(10),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
-            childAspectRatio: 3 / 4,
-          ),
-          itemCount: books.length,
-          itemBuilder: (context, index) {
-            return LibraryCell(books[index]);
-          },
+      body: GridView.builder(
+        padding: const EdgeInsets.all(10),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          childAspectRatio: 3 / 4,
         ),
+        itemCount: books.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailsScreen(book: books[index]),
+                ),
+              );
+            },
+            child: LibraryCell(books[index]),
+          );
+        },
       ),
     );
   }
