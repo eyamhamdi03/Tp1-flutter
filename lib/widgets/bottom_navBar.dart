@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tp1/screens/library_screen.dart';
-import 'package:tp1/screens/home_srcreen.dart';
 import 'package:tp1/screens/basket_screen.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -11,7 +10,7 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  final List<Widget> pages = [HomeScreen(), LibraryScreen(), BasketScreen()];
+  final List<Widget> pages = [LibraryScreen(), LibraryScreen(), BasketScreen()];
 
   int mCurrentIndex = 0;
 

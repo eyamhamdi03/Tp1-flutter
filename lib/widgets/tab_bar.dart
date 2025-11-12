@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tp1/screens/basket_screen.dart';
-import 'package:tp1/screens/home_srcreen.dart';
 import 'package:tp1/screens/library_screen.dart';
 
 class MyTabBar extends StatefulWidget {
@@ -13,7 +12,7 @@ class MyTabBar extends StatefulWidget {
 class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
   late TabController tabController;
 
-  final List<Widget> pages = [HomeScreen(), LibraryScreen(), BasketScreen()];
+  final List<Widget> pages = [LibraryScreen(), LibraryScreen(), BasketScreen()];
 
   @override
   void initState() {

@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
 import '../models/book.dart';
 
-int quantity = 10; // variable globale de la quantité dispponible
+int quantity = 10;
 
 class DetailsScreen extends StatefulWidget {
-  // on doit la changer à statefull pour tenir compte du state et par suite avoir acces a la variable quantity pour la changer et decrementer
-  static const routeName = '/details';
+  final Book book;
 
-  const DetailsScreen({super.key});
+  const DetailsScreen({super.key, required this.book});
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
-  late Book book;
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    book = ModalRoute.of(context)!.settings.arguments as Book;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 33, 107, 235),
-        title: Text(book.name),
+        title: Text(widget.book.name),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -35,18 +27,16 @@ class _DetailsScreenState extends State<DetailsScreen> {
             "Quantité restante : $quantity",
             style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          // 1️⃣ Image
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Image.asset(
-              book.image,
+              widget.book.image,
               width: double.infinity,
               height: 250,
               fit: BoxFit.cover,
             ),
           ),
           const SizedBox(height: 16),
-
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
@@ -57,14 +47,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
           ),
-
           const SizedBox(height: 16),
-
           Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${book.price} TND",
+                "${widget.book.price} TND",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -72,9 +60,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
             ),
           ),
-
           const SizedBox(height: 16),
-
           Center(
             child: ElevatedButton.icon(
               onPressed: () {

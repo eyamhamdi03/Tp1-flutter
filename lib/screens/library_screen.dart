@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:tp1/screens/details_screen.dart';
 import '../models/book.dart';
 import '../widgets/library_cell.dart';
+import 'details_screen.dart';
 
 class LibraryScreen extends StatelessWidget {
+  const LibraryScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     final books = [
@@ -38,10 +40,11 @@ class LibraryScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
+              Navigator.push(
                 context,
-                DetailsScreen.routeName,
-                arguments: books[index],
+                MaterialPageRoute(
+                  builder: (context) => DetailsScreen(book: books[index]),
+                ),
               );
             },
             child: LibraryCell(books[index]),

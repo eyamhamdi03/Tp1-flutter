@@ -29,11 +29,7 @@ class LibraryCell extends StatelessWidget {
             // Nom du livre
             Text(
               book.name,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
           ],

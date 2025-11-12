@@ -14,15 +14,15 @@ class HomeCell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textColor =
+        Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black;
+
     return Container(
       padding: const EdgeInsets.all(10),
       margin: const EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(
-          color: Colors.grey.shade300,
-          width: 1,
-        ), // bordure fine
+        border: Border.all(color: Colors.grey.shade300, width: 1),
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
@@ -45,14 +45,15 @@ class HomeCell extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          const SizedBox(width: 10), // espacement entre image et texte
+          const SizedBox(width: 10),
           // Texte à droite
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start, // aligne à gauche
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: const TextStyle(
+                style: TextStyle(
+                  color: textColor, // <-- theme aware color
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),

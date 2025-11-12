@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tp1/screens/details_screen.dart';
 import 'package:tp1/widgets/main_navigation.dart';
 
 void main() {
@@ -12,8 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
-      routes: {DetailsScreen.routeName: (context) => const DetailsScreen()},
+      title: 'Store INSAT',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
@@ -22,3 +20,18 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/*
+class ResponsiveApp extends StatelessWidget {
+  const ResponsiveApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Responsive Layout Demo',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const ResponsiveHome(),
+    );
+  }
+}
+*/

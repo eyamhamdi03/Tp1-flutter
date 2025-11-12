@@ -4,8 +4,17 @@ class CustomDrawer extends StatelessWidget {
   final String buttonTitle;
   final Icon icon;
   final VoidCallback callback;
+  final bool isLightTheme;
+  final VoidCallback onThemeToggle;
 
-  const CustomDrawer(this.buttonTitle, this.icon, this.callback, {super.key});
+  const CustomDrawer(
+    this.buttonTitle,
+    this.icon,
+    this.callback, {
+    super.key,
+    required this.isLightTheme,
+    required this.onThemeToggle,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +23,17 @@ class CustomDrawer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const SizedBox(height: 50),
-          Image.asset("assets/insat.jpg", width: 100),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListTile(
-              leading: icon,
-              title: Text(buttonTitle),
-              onTap: callback,
+
+          ListTile(leading: icon, title: Text(buttonTitle), onTap: callback),
+          ListTile(
+            leading: const Icon(Icons.brightness_6),
+            title: Text(
+              isLightTheme ? "Switch to Dark Theme" : "Switch to Light Theme",
             ),
+            onTap: () {
+              onThemeToggle();
+              Navigator.pop(context);
+            },
           ),
         ],
       ),
