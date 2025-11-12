@@ -38,11 +38,10 @@ class LibraryScreen extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(
+              Navigator.pushNamed(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => DetailsScreen(book: books[index]),
-                ),
+                DetailsScreen.routeName,
+                arguments: books[index],
               );
             },
             child: LibraryCell(books[index]),

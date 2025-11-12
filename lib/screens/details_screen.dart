@@ -5,22 +5,28 @@ int quantity = 10; // variable globale de la quantité dispponible
 
 class DetailsScreen extends StatefulWidget {
   // on doit la changer à statefull pour tenir compte du state et par suite avoir acces a la variable quantity pour la changer et decrementer
+  static const routeName = '/details';
 
-  final Book book;
-
-  const DetailsScreen({super.key, required this.book});
+  const DetailsScreen({super.key});
 
   @override
   State<DetailsScreen> createState() => _DetailsScreenState();
 }
 
 class _DetailsScreenState extends State<DetailsScreen> {
+  late Book book;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    book = ModalRoute.of(context)!.settings.arguments as Book;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 33, 107, 235),
-        title: Text(widget.book.name),
+        title: Text(book.name),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
@@ -33,7 +39,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
             child: Image.asset(
-              widget.book.image,
+              book.image,
               width: double.infinity,
               height: 250,
               fit: BoxFit.cover,
@@ -41,7 +47,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
           const SizedBox(height: 16),
 
-          // 2️⃣ Description
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
@@ -55,12 +60,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
           const SizedBox(height: 16),
 
-          // 3️⃣ Price
           Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "${widget.book.price} TND",
+                "${book.price} TND",
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -71,7 +75,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
           const SizedBox(height: 16),
 
-          // 4️⃣ Buy button
           Center(
             child: ElevatedButton.icon(
               onPressed: () {
