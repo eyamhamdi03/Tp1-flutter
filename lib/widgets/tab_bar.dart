@@ -36,15 +36,7 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 33, 107, 235),
-        title: const Text(
-          "Store INSAT",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        backgroundColor: const Color.fromARGB(255, 144, 171, 218),
         bottom: TabBar(
           controller: tabController,
           labelColor: Colors.white,

@@ -7,7 +7,6 @@ class BasketScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 33, 107, 235),
         title: const Text(
           "Store INSAT",
           style: TextStyle(

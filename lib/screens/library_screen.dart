@@ -36,7 +36,6 @@ class _LibraryScreenState extends State<LibraryScreen>
     super.build(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 33, 107, 235),
         title: const Text(
           "Library",
           style: TextStyle(
