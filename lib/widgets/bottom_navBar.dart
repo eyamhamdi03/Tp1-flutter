@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tp1/screens/auth/signup_page.dart';
 import 'package:tp1/screens/library_screen.dart';
 import 'package:tp1/screens/basket_screen.dart';
 
@@ -10,14 +11,14 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-  final List<Widget> pages = [LibraryScreen(), LibraryScreen(), BasketScreen()];
+  final List<Widget> pages = [SignUpPage(), LibraryScreen(), BasketScreen()];
 
   int mCurrentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[mCurrentIndex],
+      body: IndexedStack(index: mCurrentIndex, children: pages),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: mCurrentIndex,
         onTap: (index) {
@@ -27,8 +28,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: "Home",
+            icon: Icon(Icons.person_outline),
+            label: "Sign Up",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark_outline),

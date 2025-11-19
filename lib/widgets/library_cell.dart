@@ -26,7 +26,6 @@ class LibraryCell extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            // Nom du livre
             Text(
               book.name,
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

@@ -5,33 +5,33 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Store INSAT',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
-      ),
-      home: const MainNavigation(),
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
 
-/*
-class ResponsiveApp extends StatelessWidget {
-  const ResponsiveApp({super.key});
+class _MyAppState extends State<MyApp> {
+  bool isLightTheme = true;
+
+  void toggleTheme() {
+    setState(() {
+      isLightTheme = !isLightTheme;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Responsive Layout Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const ResponsiveHome(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: isLightTheme ? ThemeMode.light : ThemeMode.dark,
+      home: MainNavigation(
+        isLightTheme: isLightTheme,
+        onThemeToggle: toggleTheme,
+      ),
     );
   }
 }
-*/

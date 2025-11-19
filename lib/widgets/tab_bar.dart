@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tp1/screens/basket_screen.dart';
 import 'package:tp1/screens/library_screen.dart';
+import 'package:tp1/screens/auth/signup_page.dart';
 
 class MyTabBar extends StatefulWidget {
   const MyTabBar({super.key});
@@ -12,7 +13,7 @@ class MyTabBar extends StatefulWidget {
 class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
   late TabController tabController;
 
-  final List<Widget> pages = [LibraryScreen(), LibraryScreen(), BasketScreen()];
+  final List<Widget> pages = [SignUpPage(), LibraryScreen(), BasketScreen()];
 
   @override
   void initState() {
@@ -49,13 +50,13 @@ class _MyTabBarState extends State<MyTabBar> with TickerProviderStateMixin {
           labelColor: Colors.white,
           unselectedLabelColor: Colors.white60,
           tabs: const [
-            Tab(icon: Icon(Icons.home_outlined), text: "Home"),
+            Tab(icon: Icon(Icons.person_outline), text: "Sign Up"),
             Tab(icon: Icon(Icons.bookmark_outline), text: "Library"),
             Tab(icon: Icon(Icons.shopping_bag), text: "Basket"),
           ],
         ),
       ),
-      body: pages[tabController.index],
+      body: TabBarView(controller: tabController, children: pages),
     );
   }
 }
