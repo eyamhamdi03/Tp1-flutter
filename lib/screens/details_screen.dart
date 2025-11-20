@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/book.dart';
+import '../services/book_service.dart';
+import '../services/user_service.dart';
 
 int quantity = 10;
 
@@ -17,7 +19,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 33, 107, 235),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: Text(widget.book.name),
       ),
       body: ListView(
@@ -63,24 +65,41 @@ class _DetailsScreenState extends State<DetailsScreen> {
           const SizedBox(height: 16),
           Center(
             child: ElevatedButton.icon(
-              onPressed: () {
-                if (quantity > 0) {
-                  setState(() {
-                    quantity--;
-                  });
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Stock épuisé !")),
+              onPressed: () async {
+                final currentUser = await UserService().getCurrentUser();
+                await BookService().insertBook(
+                  widget.book,
+                  userEmail: currentUser?.email,
+                );
+                if (context.mounted) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: const Text('Success'),
+                      content: Text(
+                        '${widget.book.name} has been added to your basket!',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.of(context).pop(),
+                          child: const Text('OK'),
+                        ),
+                      ],
+                    ),
                   );
                 }
               },
-              icon: const Icon(Icons.shopping_bag),
+              icon: const Icon(Icons.shopping_bag, color: Colors.white),
               label: const Text(
                 "Purchase",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Theme.of(context).colorScheme.primary,
                 padding: const EdgeInsets.symmetric(
                   horizontal: 24,
                   vertical: 12,

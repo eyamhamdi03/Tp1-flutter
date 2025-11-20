@@ -12,7 +12,8 @@ class MyTabBar extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 144, 171, 218),
+          toolbarHeight: 0,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           bottom: const TabBar(
             labelColor: Colors.white,
             unselectedLabelColor: Colors.white60,

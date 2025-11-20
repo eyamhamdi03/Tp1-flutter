@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:tp1/screens/library_screen.dart';
 import '../../widgets/input_decoration.dart';
+import '../../models/user.dart';
+import '../../services/user_service.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -156,27 +157,36 @@ class _SignUpPageState extends State<SignUpPage> {
             const SizedBox(height: 24),
 
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 if (_formKey.currentState!.validate()) {
                   _formKey.currentState!.save();
 
                   String username = _usernameController.text;
+                  String email = _emailController.text;
+
+                  // Save user data to local storage
+                  User user = User();
+                  user.email = email;
+                  user.fullName = username;
+                  await UserService().saveCurrentUser(user);
+
+                  print('✅ User saved: $email - $username');
+
+                  if (!mounted) return;
                   showDialog(
                     context: context,
                     builder: (context) {
                       return AlertDialog(
                         title: const Text('Sign Up Successful'),
-                        content: Text('Welcome, $username!'),
+                        content: Text(
+                          'Welcome, $username!\n\nYour email and name have been saved.',
+                        ),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LibraryScreen(),
-                                ),
-                              );
+                              // Just pop the dialog, stay on the signup tab
+                              // The user can navigate using the tabs/bottom nav
                             },
                             child: const Text('OK'),
                           ),
